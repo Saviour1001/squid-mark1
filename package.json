@@ -12,14 +12,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@0xsquid/sdk": "2.8.0-beta.0",
-    "@0xsquid/squid-types": "^0.1.66",
+    "@0xsquid/sdk": "1.14.18",
+    "@0xsquid/squid-types": "^0.1.75",
     "ethers": "6.12.1",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@types/node": "^20.12.12",
-    "tsx": "^4.10.5",
+    "@types/node": "^20.12.13",
+    "tsx": "^4.11.0",
     "typescript": "^5.4.5"
   }
 }
