@@ -20,28 +20,34 @@ const { route } = await squid.getRoute({
   fromChain: "8453", // Base
   fromAmount: sendingAmount,
   fromToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-  toChain: "314", // Filecoin
+  toChain: "10", // Filecoin
   toToken: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
   fromAddress: userAddress,
   toAddress: userAddress,
   slippage: 1.5,
 });
 
-console.log(route);
-
-const privateKey = "YOUR KEY";
+const privateKey =
+  "0x49be30f7c8578835774320afb5fcdef6c94cceb9d154f326b363e2983ec0723c";
 const rpcUrl = "https://rpc.ankr.com/base"; // fromChain RPC URL
 
 const provider = new ethers.JsonRpcProvider(rpcUrl);
 const signer = new ethers.Wallet(privateKey, provider);
 
+// Convert gasLimit to a string
+if (route && route.transactionRequest?.gasLimit) {
+  console.log(route.transactionRequest.gasLimit);
+  route.transactionRequest.gasLimit =
+    route.transactionRequest.gasLimit.toString();
+}
+
 // Execute the swap transaction
-const tx = (await squid.executeRoute({
-  signer,
-  route,
-})) as unknown as ethers.TransactionResponse;
-const txReceipt = await tx.wait();
+// const tx = (await squid.executeRoute({
+//   signer,
+//   route,
+// })) as unknown as ethers.TransactionResponse;
+// const txReceipt = await tx.wait();
 
 // Show the transaction receipt with Axelarscan link
-const axelarScanLink = "https://axelarscan.io/gmp/" + txReceipt?.hash;
-console.log(`Finished! Check Axelarscan for details: ${axelarScanLink}`);
+// const axelarScanLink = "https://axelarscan.io/gmp/" + txReceipt?.hash;
+// console.log(`Finished! Check Axelarscan for details: ${axelarScanLink}`);
